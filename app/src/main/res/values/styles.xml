@@ -7,5 +7,9 @@
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    <style name="AppTheme.slideActivityTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.example.worldairpollution
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -11,6 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.example.worldairpollution.R.layout.activity_generalinformation
+import com.r0adkll.slidr.Slidr
 
 class MainActivity : AppCompatActivity() {
 lateinit var option : Spinner
@@ -18,6 +21,13 @@ lateinit var option : Spinner
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        imageButton.setOnClickListener {
+            val intent= Intent(this,
+                GeneralInfoActivity::class.java)
+            startActivity(intent)
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+        }
 /*
         option= findViewById(R.id.spinner) as Spinner
         result =findViewById(R.id.choiceView) as TextView
