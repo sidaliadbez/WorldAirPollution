@@ -35,7 +35,7 @@
     android:layout_height="match_parent"
     android:divider="#000000"
     android:dividerHeight="0.5dp"
-    android:headerDividersEnabled="true"
+    android:groupIndicator="@null"
     xmlns:android="http://schemas.android.com/apk/res/android" />
 
     </LinearLayout>

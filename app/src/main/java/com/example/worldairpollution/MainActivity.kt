@@ -13,7 +13,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.worldairpollution.R.layout.activity_generalinformation
+import com.google.gson.GsonBuilder
 import com.r0adkll.slidr.Slidr
+import okhttp3.*
+import java.io.IOException
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
 lateinit var option : Spinner
@@ -28,6 +33,13 @@ lateinit var option : Spinner
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
+        filter.setOnClickListener {
+            val hello= Intent(this,
+                DetailCountryActivity::class.java)
+            startActivity(hello)
+
+        }
+        fetchJson()
 /*
         option= findViewById(R.id.spinner) as Spinner
         result =findViewById(R.id.choiceView) as TextView
@@ -48,7 +60,7 @@ lateinit var option : Spinner
                 result.text=options.get(position)
             }
         }*/
-        */
+
 
 
 
@@ -64,7 +76,144 @@ lateinit var option : Spinner
             this,
             countries
         )
+        recyclerView.adapter = adapter*/
+    }
+
+
+    fun fetchJson()  {
+        val client = OkHttpClient()
+        val request = Request.Builder()
+            .url("https://api.airvisual.com/v2/countries?key=7be3b8fb-772d-4a92-ab9b-01690c31aff6")
+            .build()
+
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                print("sooooooooooooooooorry")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                var cool = response.body()?.string()
+                print(cool )
+                val gson = GsonBuilder().create()
+                val homeFeed= gson.fromJson(cool,HomeFeed::class.java)
+                    fetchJson2(homeFeed)
+            }
+
+        })
+
+    }
+
+    fun fetchJson2(homeFeed: HomeFeed) {
+        var blads = arrayListOf<blad>()
+        for (i in 0..homeFeed.data.size - 1){
+
+        val client = OkHttpClient()
+        val request = Request.Builder()
+
+            .url("https://api.waqi.info/feed/"+homeFeed.data[i].country+"/?token=43e2d6a3b897ab60ac376128719ee9cce0f790bb")
+            .build()
+
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                print("sooooooooooooooooorry")
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+if (response.isSuccessful){
+
+
+                        var body = response.body()?.string()
+                       // print(body)
+
+                        val gson = GsonBuilder().create()
+                        val api3 =    gson.fromJson(body, Api3::class.java)
+                        if (api3.status.equals("ok")){
+                            println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+homeFeed.data[i].country)
+                            println(body)
+                            val api2 =    gson.fromJson(body, Api2::class.java)
+                            val blad= blad(homeFeed.data[i].country, api2)
+                            blads.add(blad)
+                           /* runOnUiThread {
+                                setupRecyclerView(blads)
+                            }*/
+                        }
+
+}
+            }
+
+        })
+
+
+
+
+
+            val client2 = OkHttpClient()
+            val request2 = Request.Builder()
+
+                .url("https://restcountries.eu/rest/v2/name/"+homeFeed.data[i].country)
+                .build()
+
+
+            client2.newCall(request2).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    print("sooooooooooooooooorry")
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    if (response.isSuccessful){
+
+
+                        var body = response.body()?.string()
+                        val gson = GsonBuilder().create()
+                        val api3 =    gson.fromJson(body, Api3::class.java)
+                        if (api3.status.equals("ok")){
+
+                            val api2 =    gson.fromJson(body, Api2::class.java)
+                            val blad= blad(homeFeed.data[i].country, api2)
+                            blads.add(blad)
+                            /* runOnUiThread {
+                                 setupRecyclerView(blads)
+                             }*/
+                        }
+
+                    }
+                }
+
+            })
+
+
+
+
+
+    }
+
+
+    }
+
+    private fun setupRecyclerView(blads: ArrayList<blad>) {
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        recyclerView.layoutManager = layoutManager
+        val adapter = ApiAdapter(
+            this, blads
+        )
         recyclerView.adapter = adapter
     }
 
+
+
 }
+
+
+class HomeFeed(val data : List<data>)
+class data (val country :String)
+class Api3(val status:String )
+class Api4(val flag:String )
+class Api2(val data: data2 )
+class data2(val aqi: String,val iaqi: iaqi )
+class iaqi(var t:t, var p : p)
+class t(val v :Double)
+class p (val v : Double)
+class blad(var country: String, var homeFeed2: Api2,api4: Api4)

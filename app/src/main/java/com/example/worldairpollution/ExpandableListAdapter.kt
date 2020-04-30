@@ -8,6 +8,7 @@ import android.widget.BaseExpandableListAdapter
 import android.widget.ExpandableListView
 import android.widget.TextView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.layout_group.view.*
 
 class ExpandableListAdapter(var context: Context, var expandableListView : ExpandableListView, var header : MutableList<String>, var body : MutableList<MutableList<String>>) : BaseExpandableListAdapter(){
     override fun getGroup(groupPosition: Int): String {
@@ -28,6 +29,7 @@ class ExpandableListAdapter(var context: Context, var expandableListView : Expan
             val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
             convertView = inflater.inflate(R.layout.layout_group,null)
         }
+     
         val title = convertView?.findViewById<TextView>(R.id.tv_title)
         title?.text = getGroup(groupPosition)
         title?.setOnClickListener {
