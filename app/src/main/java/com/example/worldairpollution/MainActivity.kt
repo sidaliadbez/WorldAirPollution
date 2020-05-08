@@ -26,7 +26,6 @@ lateinit var option : Spinner
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         imageButton.setOnClickListener {
             val intent= Intent(this,
                 GeneralInfoActivity::class.java)
@@ -106,6 +105,9 @@ lateinit var option : Spinner
 
     fun fetchJson2(homeFeed: HomeFeed) {
         var blads = arrayListOf<blad>()
+        var api2: Api2? = null
+        var status1 :Status?= null
+        var status2 :Status?= null
         for (i in 0..homeFeed.data.size - 1){
 
         val client = OkHttpClient()
@@ -121,23 +123,14 @@ lateinit var option : Spinner
             }
 
             override fun onResponse(call: Call, response: Response) {
-if (response.isSuccessful){
-
+                    if (response.isSuccessful){
 
                         var body = response.body()?.string()
-                       // print(body)
-
                         val gson = GsonBuilder().create()
-                        val api3 =    gson.fromJson(body, Api3::class.java)
-                        if (api3.status.equals("ok")){
+                        status1 =    gson.fromJson(body, Status::class.java)
+                        if (status1?.status.equals("ok")){
                             println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+homeFeed.data[i].country)
-                            println(body)
-                            val api2 =    gson.fromJson(body, Api2::class.java)
-                            val blad= blad(homeFeed.data[i].country, api2)
-                            blads.add(blad)
-                           /* runOnUiThread {
-                                setupRecyclerView(blads)
-                            }*/
+                             api2 =    gson.fromJson(body, Api2::class.java)
                         }
 
 }
@@ -167,15 +160,17 @@ if (response.isSuccessful){
 
                         var body = response.body()?.string()
                         val gson = GsonBuilder().create()
-                        val api3 =    gson.fromJson(body, Api3::class.java)
-                        if (api3.status.equals("ok")){
+                       // status2 =    gson.fromJson(body, Status::class.java)
+                        if (status1?.status.equals("ok")){
 
-                            val api2 =    gson.fromJson(body, Api2::class.java)
-                            val blad= blad(homeFeed.data[i].country, api2)
-                            blads.add(blad)
-                            /* runOnUiThread {
+                            val api3 =    gson.fromJson(body, Array<Api3>::class.java)
+                            val blad= api2?.let { blad(homeFeed.data[i].country, it,api3) }
+                            if (blad != null) {
+                                blads.add(blad)
+                            }
+                             runOnUiThread {
                                  setupRecyclerView(blads)
-                             }*/
+                             }
                         }
 
                     }
@@ -209,11 +204,11 @@ if (response.isSuccessful){
 
 class HomeFeed(val data : List<data>)
 class data (val country :String)
-class Api3(val status:String )
-class Api4(val flag:String )
+class Status(val status:String )
+class Api3(val flag:String )
 class Api2(val data: data2 )
 class data2(val aqi: String,val iaqi: iaqi )
 class iaqi(var t:t, var p : p)
 class t(val v :Double)
 class p (val v : Double)
-class blad(var country: String, var homeFeed2: Api2,api4: Api4)
+class blad(var country: String, var homeFeed2: Api2,var api3: Array<Api3>)
