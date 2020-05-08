@@ -14,19 +14,42 @@
 
         <ImageView
             android:id="@+id/flag"
-            android:layout_width="84dp"
-            android:layout_height="53dp"
-            android:layout_gravity="center" />
+            android:layout_width="75dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center"
+            android:transitionName="drapeau" />
 
         <TextView
+            android:id="@+id/Nompay"
             android:layout_width="match_parent"
             android:layout_height="41dp"
-            android:gravity="center" />
+
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:transitionName="nompay" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"></LinearLayout>
+        android:layout_height="130dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Voici le Valeur :"
+            android:paddingLeft="20dp"
+            android:layout_height="30dp"/>
+        <TextView
+            android:id="@+id/Grandevaleur"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="155"
+            android:textSize="60dp"
+            android:textStyle="bold"
+            android:textColor="#E86262"
+            android:textAlignment="center"/>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

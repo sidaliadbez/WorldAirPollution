@@ -23,12 +23,14 @@ init {
 itemView.details.setOnClickListener {
     val intent = Intent(context, DetailCountryActivity::class.java)
 
-    //intent.putExtra("dowla", dowla)
-    val p1 :Pair<View,String> = Pair(itemView.nompay,"nompay")
-    val p2 :Pair<View,String> = Pair(itemView.flag,"drapeau")
+    intent.putExtra("dowla", dowla?.country)
+    intent.putExtra("la3lam", dowla?.api3?.get(0)?.flag)
+    intent.putExtra("valeur", dowla?.homeFeed2?.data?.aqi)
+    val p1 :Pair<View,String> = Pair(itemView.flag,"drapeau")
 
-    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity, p1,p2)
+   val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity,p1)
     context.startActivity(intent, options.toBundle())
+
 }
 }
         fun setData(pay: blad, pos: Int) {

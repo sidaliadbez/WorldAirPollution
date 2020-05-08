@@ -17,6 +17,7 @@ import com.google.gson.GsonBuilder
 import com.r0adkll.slidr.Slidr
 import okhttp3.*
 import java.io.IOException
+import java.io.Serializable
 import java.util.*
 import kotlin.collections.ArrayList
 

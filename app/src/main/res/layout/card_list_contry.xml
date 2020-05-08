@@ -17,6 +17,7 @@
             android:layout_width="75dp"
             android:layout_height="65dp"
             android:layout_gravity="center"
+            android:transitionName="drapeau"
             android:layout_marginLeft="20dp" />
         <!-- android:src="https://restcountries.eu/data/dza.svg"-->
         <LinearLayout
@@ -29,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="Algeria lkrjnfljerk  fgtrg"
+                android:transitionName="nompay"
                 android:textSize="20dp"
                 android:textColor="#000000"
                 android:textStyle="bold"/>
@@ -46,6 +47,7 @@
                     android:orientation="vertical">
                     <TextView
                         android:id="@+id/valeur"
+                        android:transitionName="valeur"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="valeur : 30 "
