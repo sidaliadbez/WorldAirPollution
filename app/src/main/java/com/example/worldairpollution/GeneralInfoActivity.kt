@@ -17,9 +17,7 @@ class GeneralInfoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_generalinformation)
 
         retour.setOnClickListener {
-            val intent= Intent(this,
-                MainActivity::class.java)
-            startActivity(intent)
+            finish()
             overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
         }

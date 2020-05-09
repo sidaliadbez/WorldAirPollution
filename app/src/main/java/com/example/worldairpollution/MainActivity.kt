@@ -33,12 +33,7 @@ lateinit var option : Spinner
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
-        filter.setOnClickListener {
-            val hello= Intent(this,
-                DetailCountryActivity::class.java)
-            startActivity(hello)
 
-        }
         fetchJson()
 /*
         option= findViewById(R.id.spinner) as Spinner

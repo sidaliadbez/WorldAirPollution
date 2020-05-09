@@ -40,8 +40,6 @@ itemView.details.setOnClickListener {
             if (pay.homeFeed2.data.aqi=="-"){
                 itemView.etat.text="Stat: -"
             }else{
-
-
             when(pay.homeFeed2.data.aqi.toInt()){
                 in 0..50 -> itemView.etat.text="Stat: Excellent"
                 in  51..100-> itemView.etat.text= "Stat: Good"
