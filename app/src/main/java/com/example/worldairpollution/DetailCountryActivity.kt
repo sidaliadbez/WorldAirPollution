@@ -220,22 +220,90 @@ class DetailCountryActivity : AppCompatActivity() {
             }
         }
 
-
+        var couleurpm10 = -0x000000
+        var pm10val = 0F
         if (blad?.homeFeed2?.data?.iaqi?.pm10==null){
             val text = textpm10.text.toString()
             textpm10.text= text+ " :   /"
         }else{
             val text = textpm10.text.toString()
             textpm10.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.pm10!!.v
+            when(blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()){
+                in 0F .. 50F-> {
+                    couleurpm10 = Color.parseColor("#ff3f8f42")
+                    pm10val= ((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat())*100/ 50F)*0.2F
+
+                }
+                in 50.01F..100F ->{
+                    couleurpm10 = Color.parseColor("#FF97DC5B")
+                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-50.01F)*100/ (100F-50.01F))*0.2F)+ 20F
+
+                }
+                in 100.01F .. 250F-> {
+                    couleurpm10 = Color.parseColor("#FFE434")
+                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-100.01F)*100/ (250F-100.01F))*0.26F)+40
+                }
+                in 250.01F .. 350F-> {
+                    couleurpm10 = Color.parseColor("#FFF88510")
+                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-250.01F)*100/ (350F-250.01F))*0.17F) + 66F
+
+                }
+                in 350.01F .. 430F-> {
+                    couleurpm10 = Color.parseColor("#FFE86262")
+                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-350.01F)*100/ (430F-350.01F))*0.13F) + 83F
+
+                }
+                else-> {
+                    couleurpm10 = Color.parseColor("#FF681616")
+                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-430.01F)*100/ (860F-430.01F))*0.4F) + 96F
+
+
+                }
+            }
         }
 
 
+
+        var couleurpm25 = -0x000000
+        var pm25val = 0F
         if (blad?.homeFeed2?.data?.iaqi?.pm25==null){
             val text = textpm25.text.toString()
             textpm25.text= text+ " :   /"
         }else{
             val text = textpm25.text.toString()
             textpm25.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.pm25!!.v
+            when(blad?.homeFeed2?.data?.iaqi?.pm25!!.v.toFloat()){
+                in 0F .. 30F-> {
+                    couleurpm25 = Color.parseColor("#ff3f8f42")
+                    pm25val= ((blad?.homeFeed2?.data?.iaqi?.pm25!!.v.toFloat())*100/ 30F)*0.2F
+
+                }
+                in 30.01F..60F ->{
+                    couleurpm25 = Color.parseColor("#FF97DC5B")
+                    pm25val= (((blad?.homeFeed2?.data?.iaqi?.pm25!!.v.toFloat()-30.01F)*100/ (60F-30.01F))*0.2F)+ 20F
+
+                }
+                in 60.01F .. 90F-> {
+                    couleurpm25 = Color.parseColor("#FFE434")
+                    pm25val= (((blad?.homeFeed2?.data?.iaqi?.pm25!!.v.toFloat()-60.01F)*100/ (90F-60.01F))*0.26F)+40F
+                }
+                in 90.01F .. 120F-> {
+                    couleurpm25 = Color.parseColor("#FFF88510")
+                    pm25val= (((blad?.homeFeed2?.data?.iaqi?.pm25!!.v.toFloat()-90.01F)*100/ (120F-90.01F))*0.17F) + 66F
+
+                }
+                in 120.01F .. 250F-> {
+                    couleurpm25 = Color.parseColor("#FFE86262")
+                    pm25val= (((blad?.homeFeed2?.data?.iaqi?.pm25!!.v.toFloat()-120.01F)*100/ (250F-120.01F))*0.13F) + 83F
+
+                }
+                else-> {
+                    couleurpm25 = Color.parseColor("#FF681616")
+                    pm25val= (((blad?.homeFeed2?.data?.iaqi?.pm25!!.v.toFloat()-250.01F)*100/ (500F-430.01F))*0.4F) + 96F
+
+
+                }
+            }
         }
 
 
@@ -344,9 +412,9 @@ class DetailCountryActivity : AppCompatActivity() {
         val listPie5 = ArrayList<PieEntry>()
         val listColors5 = ArrayList<Int>()
 
-        listPie5.add(PieEntry(30F, ""))
-        listColors5.add(Color.GREEN)
-        listPie5.add(PieEntry(70F, ""))
+        listPie5.add(PieEntry(pm25val, ""))
+        listColors5.add(couleurpm25)
+        listPie5.add(PieEntry(100F-pm25val, ""))
         listColors5.add((-0xE27E7E7E).toInt())
 
         pieDataSet = PieDataSet(listPie5, "")
@@ -365,14 +433,14 @@ class DetailCountryActivity : AppCompatActivity() {
 
 
 
-        ///PieChart 3///
+        ///PieChart 5///
         pieChart  = findViewById(R.id.piechartpm10)
         val listPie4 = ArrayList<PieEntry>()
         val listColors4 = ArrayList<Int>()
 
-        listPie4.add(PieEntry(30F, ""))
-        listColors4.add(Color.GREEN)
-        listPie4.add(PieEntry(70F, ""))
+        listPie4.add(PieEntry(pm10val, ""))
+        listColors4.add(couleurpm10)
+        listPie4.add(PieEntry(100F-pm10val, ""))
         listColors4.add((-0xE27E7E7E).toInt())
 
         pieDataSet = PieDataSet(listPie4, "")
