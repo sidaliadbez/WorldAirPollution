@@ -22,10 +22,7 @@ class ApiAdapter(val context: Context, var blads: ArrayList<blad>): RecyclerView
 init {
 itemView.details.setOnClickListener {
     val intent = Intent(context, DetailCountryActivity::class.java)
-
-    intent.putExtra("dowla", dowla?.country)
-    intent.putExtra("la3lam", dowla?.api3?.get(0)?.flag)
-    intent.putExtra("valeur", dowla?.homeFeed2?.data?.aqi)
+    intent.putExtra("blad",dowla!!)
     val p1 :Pair<View,String> = Pair(itemView.flag,"drapeau")
 
    val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity,p1)
@@ -36,6 +33,7 @@ itemView.details.setOnClickListener {
         fun setData(pay: blad, pos: Int) {
             dowla= pay
             itemView.nompay.text = pay.country
+            itemView.date.text= pay.homeFeed2.data.iaqi.co?.v + " "+ pay.homeFeed2.data.iaqi.so2?.v + " " +pay.homeFeed2.data.iaqi.no2?.v +" " +pay.homeFeed2.data.iaqi.pm10?.v +" "+pay.homeFeed2.data.iaqi.pm25?.v
             itemView.valeur.text="Value: "+pay.homeFeed2.data.aqi
             if (pay.homeFeed2.data.aqi=="-"){
                 itemView.etat.text="Stat: -"

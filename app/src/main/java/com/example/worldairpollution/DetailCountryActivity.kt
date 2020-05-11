@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
@@ -22,19 +23,25 @@ class DetailCountryActivity : AppCompatActivity() {
       var  toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-val valeur = intent.getStringExtra("valeur")
-val nom = intent.getStringExtra("dowla")
-        GlideToVectorYou.justLoadImage(this, Uri.parse(intent.getStringExtra("la3lam")), flag)
-        Grandevaleur.setText(valeur)
-        Nompay.setText(nom)
-        if (valeur=="-"){
+        var blad: blad?=null
+        val bundel: Bundle?= intent.extras
+        blad= bundel?.getSerializable("blad") as? blad
+
+
+        GlideToVectorYou.justLoadImage(this, Uri.parse(blad?.api3?.get(0)?.flag), flag)
+        Grandevaleur.setText(blad?.homeFeed2?.data?.aqi)
+        Nompay.setText(blad?.country)
+
+
+
+        if (blad?.homeFeed2?.data?.aqi=="-"){
             Grandevaleur.setTextSize(20.0F)
             Grandevaleur.setTextColor(Color.parseColor("#000000"))
             Grandevaleur.text="NO Data Available :("
         }else{
 
                 textquality.text="Quality of the air : "
-            when(valeur.toInt()){
+            when(blad?.homeFeed2?.data?.aqi?.toInt()){
                 in 0..50 ->{
                     Grandevaleur.setTextColor(Color.parseColor("#FF3F8F42"))
                     qualite.text="Excellent"
@@ -69,6 +76,169 @@ val nom = intent.getStringExtra("dowla")
         }
 
 
+
+
+
+
+
+        var couleurco = -0x000000
+        var coval = 0F
+        if (blad?.homeFeed2?.data?.iaqi?.co==null){
+            val text = textco.text.toString()
+            textco.text= text+ " :   /"
+        }else{
+            val text = textco.text.toString()
+            textco.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.co!!.v
+            when(blad?.homeFeed2?.data?.iaqi?.co!!.v.toFloat()){
+                in 0F .. 1.0F-> {
+                    couleurco = Color.parseColor("#ff3f8f42")
+                    coval= ((blad?.homeFeed2?.data?.iaqi?.co!!.v.toFloat())*100/ 1F)*0.2F
+
+                }
+                in 1.1F..2F ->{
+                    couleurco = Color.parseColor("#FF97DC5B")
+                    coval= (((blad?.homeFeed2?.data?.iaqi?.co!!.v.toFloat()-1.1F)*100/ (2F-1.1F))*0.2F)+ 20F
+
+                }
+                in 2.1F .. 10F-> {
+                    couleurco = Color.parseColor("#FFE434")
+                    coval= (((blad?.homeFeed2?.data?.iaqi?.co!!.v.toFloat()-2.1F)*100/ (10F-2.1F))*0.26F)+40
+                }
+                in 10.1F .. 17F-> {
+                    couleurco = Color.parseColor("#FFF88510")
+                    coval= (((blad?.homeFeed2?.data?.iaqi?.co!!.v.toFloat()-10.1F)*100/ (17F-10.1F))*0.17F) + 66F
+
+                }
+                in 17.1F .. 34F-> {
+                    couleurco = Color.parseColor("#FFE86262")
+                    coval= (((blad?.homeFeed2?.data?.iaqi?.co!!.v.toFloat()-17.1F)*100/ (13F-17.1F))*0.13F) + 83F
+
+                }
+                else-> {
+                    couleurco = Color.parseColor("#FF681616")
+                    coval= (((blad?.homeFeed2?.data?.iaqi?.co!!.v.toFloat()-34.1F)*100/ (60F-34.1F))*0.4F) + 96F
+
+
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        var couleurso2 = -0x000000
+        var so2val = 0F
+        if (blad?.homeFeed2?.data?.iaqi?.so2==null){
+            val text = textso2.text.toString()
+            textso2.text= text+ " :   /"
+        }else{
+            val text = textso2.text.toString()
+            textso2.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.so2!!.v
+            when(blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()){
+                in 0F .. 40F-> {
+                    couleurso2 = Color.parseColor("#ff3f8f42")
+                    so2val= ((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat())*100/ 40F)*0.2F
+
+                }
+                in 40.01F..80F ->{
+                    couleurso2 = Color.parseColor("#FF97DC5B")
+                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-40.01F)*100/ (80F-40.01F))*0.2F)+ 20F
+
+                }
+                in 80.01F .. 380F-> {
+                    couleurso2 = Color.parseColor("#FFE434")
+                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-80.01F)*100/ (380F-80.01F))*0.26F)+40
+                }
+                in 380.01F .. 800F-> {
+                    couleurso2 = Color.parseColor("#FFF88510")
+                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-380.01F)*100/ (800F-380.01F))*0.17F) + 66F
+
+                }
+                in 800.01F .. 1600F-> {
+                    couleurso2 = Color.parseColor("#FFE86262")
+                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-800.01F)*100/ (1600F-800.01F))*0.13F) + 83F
+
+                }
+                else-> {
+                    couleurso2 = Color.parseColor("#FF681616")
+                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-1600.01F)*100/ (3200F-1600.01F))*0.4F) + 96F
+
+
+                }
+            }
+        }
+
+        var couleurno2 = -0x000000
+        var no2val = 0F
+        if (blad?.homeFeed2?.data?.iaqi?.no2==null){
+            val text = textno2.text.toString()
+            textno2.text= text+ " :   /"
+        }else{
+            val text = textno2.text.toString()
+            textno2.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.no2!!.v
+            when(blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()){
+                in 0F .. 40F-> {
+                    couleurno2 = Color.parseColor("#ff3f8f42")
+                    no2val= ((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat())*100/ 40F)*0.2F
+
+                }
+                in 40.01F..80F ->{
+                    couleurno2 = Color.parseColor("#FF97DC5B")
+                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-40.01F)*100/ (80F-40.01F))*0.2F)+ 20F
+
+                }
+                in 80.01F .. 180F-> {
+                    couleurno2 = Color.parseColor("#FFE434")
+                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-80.01F)*100/ (180F-80.01F))*0.26F)+40
+                }
+                in 180.01F .. 280F-> {
+                    couleurno2 = Color.parseColor("#FFF88510")
+                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-180.01F)*100/ (280F-180.01F))*0.17F) + 66F
+
+                }
+                in 280.01F .. 400F-> {
+                    couleurno2 = Color.parseColor("#FFE86262")
+                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-280.01F)*100/ (400F-280.01F))*0.13F) + 83F
+
+                }
+                else-> {
+                    couleurno2 = Color.parseColor("#FF681616")
+                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-400.01F)*100/ (800F-400.01F))*0.4F) + 96F
+
+
+                }
+            }
+        }
+
+
+        if (blad?.homeFeed2?.data?.iaqi?.pm10==null){
+            val text = textpm10.text.toString()
+            textpm10.text= text+ " :   /"
+        }else{
+            val text = textpm10.text.toString()
+            textpm10.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.pm10!!.v
+        }
+
+
+        if (blad?.homeFeed2?.data?.iaqi?.pm25==null){
+            val text = textpm25.text.toString()
+            textpm25.text= text+ " :   /"
+        }else{
+            val text = textpm25.text.toString()
+            textpm25.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.pm25!!.v
+        }
+
+
 /*
         pieChart.setUsePercentValues(true)
         pieChart.description.isEnabled = false
@@ -98,9 +268,9 @@ val nom = intent.getStringExtra("dowla")
         val listPie = ArrayList<PieEntry>()
         val listColors = ArrayList<Int>()
 
-        listPie.add(PieEntry(30F, ""))
-        listColors.add(Color.GREEN)
-        listPie.add(PieEntry(70F, ""))
+        listPie.add(PieEntry(coval, ""))
+        listColors.add(couleurco)
+        listPie.add(PieEntry(100F-coval, ""))
         listColors.add((-0xE27E7E7E).toInt())
 
         var pieDataSet = PieDataSet(listPie, "")
@@ -115,8 +285,7 @@ val nom = intent.getStringExtra("dowla")
         pieChart.description.isEnabled = false
         pieChart.setTouchEnabled(false)
         pieChart.setHoleColor((-0xFFF9F9F9).toInt())
-
-       //pieChart.animateY(1000, Easing.EaseInOutBack)
+        pieChart.animateY(2000, Easing.EaseInOutBack)
 
 
                     ///PieChart 2///
@@ -124,9 +293,9 @@ val nom = intent.getStringExtra("dowla")
         val listPie2 = ArrayList<PieEntry>()
         val listColors2 = ArrayList<Int>()
 
-        listPie2.add(PieEntry(30F, ""))
-        listColors2.add(Color.GREEN)
-        listPie2.add(PieEntry(70F, ""))
+        listPie2.add(PieEntry(so2val, ""))
+        listColors2.add(couleurso2)
+        listPie2.add(PieEntry(100F - so2val, ""))
         listColors2.add((-0xE27E7E7E).toInt())
 
          pieDataSet = PieDataSet(listPie2, "")
@@ -141,6 +310,7 @@ val nom = intent.getStringExtra("dowla")
         pieChart.description.isEnabled = false
         pieChart.setTouchEnabled(false)
         pieChart.setHoleColor((-0xFFF9F9F9).toInt())
+        pieChart.animateY(2000, Easing.EaseInOutBack)
 
 
                          ///PieChart 3///
@@ -148,9 +318,9 @@ val nom = intent.getStringExtra("dowla")
         val listPie3= ArrayList<PieEntry>()
         val listColors3 = ArrayList<Int>()
 
-        listPie3.add(PieEntry(30F, ""))
-        listColors3.add(Color.GREEN)
-        listPie3.add(PieEntry(70F, ""))
+        listPie3.add(PieEntry(no2val, ""))
+        listColors3.add(couleurno2)
+        listPie3.add(PieEntry(100F-no2val, ""))
         listColors3.add((-0xE27E7E7E).toInt())
 
         pieDataSet = PieDataSet(listPie3, "")
@@ -165,7 +335,7 @@ val nom = intent.getStringExtra("dowla")
         pieChart.description.isEnabled = false
         pieChart.setTouchEnabled(false)
         pieChart.setHoleColor((-0xFFF9F9F9).toInt())
-
+        pieChart.animateY(2000, Easing.EaseInOutBack)
 
 
 
@@ -191,6 +361,9 @@ val nom = intent.getStringExtra("dowla")
         pieChart.description.isEnabled = false
         pieChart.setTouchEnabled(false)
         pieChart.setHoleColor((-0xFFF9F9F9).toInt())
+        pieChart.animateY(2000, Easing.EaseInOutBack)
+
+
 
         ///PieChart 3///
         pieChart  = findViewById(R.id.piechartpm10)
@@ -214,6 +387,7 @@ val nom = intent.getStringExtra("dowla")
         pieChart.description.isEnabled = false
         pieChart.setTouchEnabled(false)
         pieChart.setHoleColor((-0xFFF9F9F9).toInt())
+        pieChart.animateY(2000, Easing.EaseInOutBack)
 
 }
 
@@ -223,13 +397,6 @@ val nom = intent.getStringExtra("dowla")
         piechartso.postDelayed(Runnable { piechartso.setVisibility(View.GONE) }, 200)
         piechartpm25.postDelayed(Runnable { piechartpm25.setVisibility(View.GONE) }, 200)
         piechartpm10.postDelayed(Runnable { piechartpm10.setVisibility(View.GONE) }, 200)
-            /*piechartco.setVisibility(View.GONE)
-            piechartno.setVisibility(View.GONE)
-            piechartso.setVisibility(View.GONE)
-            piechartpm10.setVisibility(View.GONE)
-            piechartpm25.setVisibility(View.GONE)*/
-
-
 
         super.onBackPressed()
     }

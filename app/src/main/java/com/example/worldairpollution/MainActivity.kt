@@ -198,13 +198,18 @@ lateinit var option : Spinner
 }
 
 
-class HomeFeed(val data : List<data>)
-class data (val country :String)
-class Status(val status:String )
-class Api3(val flag:String )
-class Api2(val data: data2 )
-class data2(val aqi: String,val iaqi: iaqi )
-class iaqi(var t:t, var p : p)
-class t(val v :Double)
-class p (val v : Double)
-class blad(var country: String, var homeFeed2: Api2,var api3: Array<Api3>)
+class HomeFeed(val data : List<data>): Serializable
+class data (val country :String): Serializable
+class Status(val status:String ): Serializable
+class Api3(val flag:String ): Serializable
+class Api2(val data: data2 ): Serializable
+class data2(val aqi: String,val iaqi: iaqi ): Serializable
+class iaqi(val t:t, val p : p, var co : co? = null, var so2 : so2? = null , var no2 : no2? = null , var pm10 : pm10? = null , var pm25 : pm25? = null): Serializable
+class t(val v :String): Serializable
+class p (val v : String): Serializable
+class co(var v: String ="-" ): Serializable
+class so2(var v: String ="-"): Serializable
+class no2(var v: String ="-" ): Serializable
+class pm25(var v: String ="-" ): Serializable
+class pm10(var v: String ="-" ): Serializable
+class blad(var country: String, var homeFeed2: Api2,var api3: Array<Api3>) : Serializable
