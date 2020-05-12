@@ -116,7 +116,7 @@ class DetailCountryActivity : AppCompatActivity() {
                 }
                 else-> {
                     couleurco = Color.parseColor("#FF681616")
-                    coval= (((blad?.homeFeed2?.data?.iaqi?.co!!.v.toFloat()-34.1F)*100/ (60F-34.1F))*0.4F) + 96F
+                    coval= (((blad?.homeFeed2?.data?.iaqi?.co!!.v.toFloat()-34.1F)*100/ (60F-34.1F))*0.04F) + 96F
 
 
                 }
@@ -147,31 +147,31 @@ class DetailCountryActivity : AppCompatActivity() {
             when(blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()){
                 in 0F .. 40F-> {
                     couleurso2 = Color.parseColor("#ff3f8f42")
-                    so2val= ((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat())*100/ 40F)*0.2F
+                    so2val= ((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat())*100/ 40F)*0.5F
 
                 }
                 in 40.01F..80F ->{
                     couleurso2 = Color.parseColor("#FF97DC5B")
-                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-40.01F)*100/ (80F-40.01F))*0.2F)+ 20F
+                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-40.01F)*100/ (80F-40.01F))*0.2F)+ 50F
 
                 }
                 in 80.01F .. 380F-> {
                     couleurso2 = Color.parseColor("#FFE434")
-                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-80.01F)*100/ (380F-80.01F))*0.26F)+40
+                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-80.01F)*100/ (380F-80.01F))*0.1F)+70F
                 }
                 in 380.01F .. 800F-> {
                     couleurso2 = Color.parseColor("#FFF88510")
-                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-380.01F)*100/ (800F-380.01F))*0.17F) + 66F
+                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-380.01F)*100/ (800F-380.01F))*0.1F) + 80F
 
                 }
                 in 800.01F .. 1600F-> {
                     couleurso2 = Color.parseColor("#FFE86262")
-                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-800.01F)*100/ (1600F-800.01F))*0.13F) + 83F
+                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-800.01F)*100/ (1600F-800.01F))*0.05F) + 90F
 
                 }
                 else-> {
                     couleurso2 = Color.parseColor("#FF681616")
-                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-1600.01F)*100/ (3200F-1600.01F))*0.4F) + 96F
+                    so2val= (((blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()-1600.01F)*100/ (3200F-1600.01F))*0.05F) + 95F
 
 
                 }
@@ -189,31 +189,31 @@ class DetailCountryActivity : AppCompatActivity() {
             when(blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()){
                 in 0F .. 40F-> {
                     couleurno2 = Color.parseColor("#ff3f8f42")
-                    no2val= ((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat())*100/ 40F)*0.2F
+                    no2val= ((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat())*100/ 40F)*0.5F
 
                 }
                 in 40.01F..80F ->{
                     couleurno2 = Color.parseColor("#FF97DC5B")
-                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-40.01F)*100/ (80F-40.01F))*0.2F)+ 20F
+                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-40.01F)*100/ (80F-40.01F))*0.2F)+ 50F
 
                 }
                 in 80.01F .. 180F-> {
                     couleurno2 = Color.parseColor("#FFE434")
-                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-80.01F)*100/ (180F-80.01F))*0.26F)+40
+                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-80.01F)*100/ (180F-80.01F))*0.1F)+70F
                 }
                 in 180.01F .. 280F-> {
                     couleurno2 = Color.parseColor("#FFF88510")
-                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-180.01F)*100/ (280F-180.01F))*0.17F) + 66F
+                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-180.01F)*100/ (280F-180.01F))*0.1F) + 80F
 
                 }
                 in 280.01F .. 400F-> {
                     couleurno2 = Color.parseColor("#FFE86262")
-                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-280.01F)*100/ (400F-280.01F))*0.13F) + 83F
+                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-280.01F)*100/ (400F-280.01F))*0.05F) + 90F
 
                 }
                 else-> {
                     couleurno2 = Color.parseColor("#FF681616")
-                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-400.01F)*100/ (800F-400.01F))*0.4F) + 96F
+                    no2val= (((blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()-400.01F)*100/ (800F-400.01F))*0.05F) + 95F
 
 
                 }
@@ -231,31 +231,31 @@ class DetailCountryActivity : AppCompatActivity() {
             when(blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()){
                 in 0F .. 50F-> {
                     couleurpm10 = Color.parseColor("#ff3f8f42")
-                    pm10val= ((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat())*100/ 50F)*0.2F
+                    pm10val= ((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat())*100/ 50F)*0.5F
 
                 }
                 in 50.01F..100F ->{
                     couleurpm10 = Color.parseColor("#FF97DC5B")
-                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-50.01F)*100/ (100F-50.01F))*0.2F)+ 20F
+                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-50.01F)*100/ (100F-50.01F))*0.2F)+ 50F
 
                 }
                 in 100.01F .. 250F-> {
                     couleurpm10 = Color.parseColor("#FFE434")
-                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-100.01F)*100/ (250F-100.01F))*0.26F)+40
+                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-100.01F)*100/ (250F-100.01F))*0.1F)+70
                 }
                 in 250.01F .. 350F-> {
                     couleurpm10 = Color.parseColor("#FFF88510")
-                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-250.01F)*100/ (350F-250.01F))*0.17F) + 66F
+                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-250.01F)*100/ (350F-250.01F))*0.1F) + 80F
 
                 }
                 in 350.01F .. 430F-> {
                     couleurpm10 = Color.parseColor("#FFE86262")
-                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-350.01F)*100/ (430F-350.01F))*0.13F) + 83F
+                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-350.01F)*100/ (430F-350.01F))*0.05F) + 90F
 
                 }
                 else-> {
                     couleurpm10 = Color.parseColor("#FF681616")
-                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-430.01F)*100/ (860F-430.01F))*0.4F) + 96F
+                    pm10val= (((blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()-430.01F)*100/ (860F-430.01F))*0.05F) + 95F
 
 
                 }

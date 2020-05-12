@@ -19,7 +19,7 @@
             android:id="@+id/ContrainLyout"
             android:layout_width="match_parent"
             android:layout_height="222dp"
-            android:background="#97DC5B"
+            android:background="#000000"
             android:orientation="vertical">
 
             <ImageButton
