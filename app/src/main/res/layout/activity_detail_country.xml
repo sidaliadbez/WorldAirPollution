@@ -57,12 +57,12 @@
     android:layout_marginHorizontal="15dp">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="90dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:paddingLeft="20dp"
             android:text="AQI value :"
             android:textColor="#000000"
@@ -73,11 +73,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="155"
-            android:textSize="60dp"
+            android:textSize="50dp"
             android:textStyle="bold"
             android:textColor="#E86262"
             android:textAlignment="center"/>
     </LinearLayout>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="#F9F9F9"
+    android:layout_marginHorizontal="40dp"
+    android:layout_marginBottom="20dp"/>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+
+        android:layout_marginTop="0dp"
+
+        android:background="@drawable/costum_button"
+        android:src="@drawable/ic_molecule" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -225,19 +242,160 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#F9F9F9"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="15dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-       <!--
-        <Button
-            android:id="@+id/aabez"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="clickser"/>
-            -->
+       <GridLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:columnCount="1"
+           android:rowCount="3">
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_height="0dp"
+               android:layout_columnWeight="1"
+               android:layout_rowWeight="1">
+               <GridLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:columnCount="3"
+                   android:rowCount="2">
+                   <LinearLayout android:layout_rowWeight="1"
+                       android:layout_columnWeight="1"
+                       android:layout_width="0dp"
+                       android:layout_height="0dp"
+                       android:orientation="vertical">
+
+                       <ImageView
+                           android:layout_width="35dp"
+                           android:layout_height="35dp"
+                           android:layout_gravity="center_horizontal|center_vertical"
+                            android:layout_marginTop="10dp"
+                           android:src="@drawable/ic_temperature"
+                           android:background="@drawable/costum_button"/>
+
+                   </LinearLayout>
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_row="0"
+                       android:layout_rowWeight="1"
+                       android:layout_column="1"
+                       android:layout_columnWeight="1"
+                       android:gravity="center|left"
+                       android:text="Temperature" />
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_rowWeight="1"
+                       android:layout_columnWeight="2"
+                       android:text="1700"
+                       android:paddingRight="30dp"
+                       android:gravity="right|center_vertical"
+                       />
+               </GridLayout>
+
+           </LinearLayout>
+
+
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_height="0dp"
+               android:layout_columnWeight="1"
+               android:layout_rowWeight="1">
+               <GridLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:columnCount="3"
+                   android:rowCount="1">
+                   <LinearLayout android:layout_rowWeight="1"
+                       android:layout_columnWeight="1"
+                       android:layout_width="0dp"
+                       android:layout_height="0dp"
+                       android:orientation="vertical">
+
+                       <ImageView
+                           android:layout_width="35dp"
+                           android:layout_height="35dp"
+                           android:layout_gravity="center_horizontal|center_vertical"
+                           android:layout_marginTop="10dp"
+                           android:src="@drawable/ic_pressure"
+                           android:background="@drawable/costum_button"/>
+
+                   </LinearLayout>
+                   <TextView
+                        android:layout_width="0dp"
+                       android:layout_row="0"
+                       android:layout_rowWeight="1"
+                       android:layout_column="1"
+                       android:layout_columnWeight="1"
+                       android:gravity="center|left"
+                       android:text="pressure" />
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_rowWeight="1"
+                       android:layout_columnWeight="2"
+                       android:text="1700"
+                       android:paddingRight="30dp"
+                       android:gravity="right|center_vertical"
+                       />
+               </GridLayout>
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="0dp"
+               android:layout_height="0dp"
+               android:layout_columnWeight="1"
+               android:layout_rowWeight="1">
+               <GridLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:columnCount="3"
+                   android:rowCount="1">
+                   <LinearLayout android:layout_rowWeight="1"
+                       android:layout_columnWeight="1"
+                       android:layout_width="0dp"
+                       android:layout_height="0dp"
+                       android:orientation="vertical">
+
+                       <ImageView
+                           android:layout_width="35dp"
+                           android:layout_height="35dp"
+                           android:layout_gravity="center_horizontal|center_vertical"
+                           android:layout_marginTop="10dp"
+                           android:src="@drawable/ic_wall_clock"
+                           android:background="@drawable/costum_button"/>
+
+                   </LinearLayout>
+
+                   <TextView
+                        android:layout_width="0dp"
+                       android:layout_row="0"
+                       android:layout_rowWeight="1"
+                       android:layout_column="1"
+                       android:layout_columnWeight="1"
+                       android:gravity="center|left"
+                       android:text="Last Update" />
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_rowWeight="1"
+                       android:layout_columnWeight="2"
+                       android:text="07-07-07-1999"
+                       android:paddingRight="30dp"
+                       android:gravity="right|center_vertical"
+                       />
+               </GridLayout>
+
+           </LinearLayout>
+       </GridLayout>
     </LinearLayout>
 </LinearLayout>
 
