@@ -203,9 +203,10 @@ class data (val country :String): Serializable
 class Status(val status:String ): Serializable
 class Api3(val flag:String ): Serializable
 class Api2(val data: data2 ): Serializable
-class data2(val aqi: String,val iaqi: iaqi ): Serializable
+class data2(val aqi: String,val iaqi: iaqi , val time : time): Serializable
 class iaqi(val t:t, val p : p, var co : co? = null, var so2 : so2? = null , var no2 : no2? = null , var pm10 : pm10? = null , var pm25 : pm25? = null): Serializable
 class t(val v :String): Serializable
+class time(val s :String): Serializable
 class p (val v : String): Serializable
 class co(var v: String ="-" ): Serializable
 class so2(var v: String ="-"): Serializable

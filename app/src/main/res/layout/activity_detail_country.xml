@@ -65,7 +65,7 @@
             android:layout_height="20dp"
             android:paddingLeft="20dp"
             android:text="AQI value :"
-            android:textColor="#000000"
+            android:textColor="#FF1C2142"
             android:layout_marginTop="10dp"/>
 
         <TextView
@@ -93,7 +93,7 @@
 
         android:layout_marginTop="0dp"
 
-        android:background="@drawable/costum_button"
+
         android:src="@drawable/ic_molecule" />
 
     <LinearLayout
@@ -213,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="PM2.5"
-                    android:textColor="#000000"/>
+                    />
 
             </LinearLayout>
 
@@ -236,7 +236,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="PM10"
-                    android:textColor="#000000"/>
+                    />
             </LinearLayout>
             </GridLayout>
         </LinearLayout>
@@ -280,7 +280,7 @@
                            android:layout_gravity="center_horizontal|center_vertical"
                             android:layout_marginTop="10dp"
                            android:src="@drawable/ic_temperature"
-                           android:background="@drawable/costum_button"/>
+                          />
 
                    </LinearLayout>
 
@@ -294,12 +294,14 @@
                        android:text="Temperature" />
 
                    <TextView
+                       android:id="@+id/valeurTemperature"
                        android:layout_width="0dp"
                        android:layout_rowWeight="1"
                        android:layout_columnWeight="2"
                        android:text="1700"
                        android:paddingRight="30dp"
                        android:gravity="right|center_vertical"
+                       android:textColor="#1C2142"
                        />
                </GridLayout>
 
@@ -328,7 +330,7 @@
                            android:layout_gravity="center_horizontal|center_vertical"
                            android:layout_marginTop="10dp"
                            android:src="@drawable/ic_pressure"
-                           android:background="@drawable/costum_button"/>
+                           />
 
                    </LinearLayout>
                    <TextView
@@ -340,10 +342,12 @@
                        android:gravity="center|left"
                        android:text="pressure" />
                    <TextView
+                       android:id="@+id/valeurPressure"
                        android:layout_width="0dp"
                        android:layout_rowWeight="1"
                        android:layout_columnWeight="2"
                        android:text="1700"
+                       android:textColor="#1C2142"
                        android:paddingRight="30dp"
                        android:gravity="right|center_vertical"
                        />
@@ -371,7 +375,7 @@
                            android:layout_gravity="center_horizontal|center_vertical"
                            android:layout_marginTop="10dp"
                            android:src="@drawable/ic_wall_clock"
-                           android:background="@drawable/costum_button"/>
+                           />
 
                    </LinearLayout>
 
@@ -385,11 +389,13 @@
                        android:text="Last Update" />
 
                    <TextView
+                       android:id="@+id/valeurLastUpdate"
                        android:layout_width="0dp"
                        android:layout_rowWeight="1"
                        android:layout_columnWeight="2"
                        android:text="07-07-07-1999"
                        android:paddingRight="30dp"
+                       android:textColor="#1C2142"
                        android:gravity="right|center_vertical"
                        />
                </GridLayout>

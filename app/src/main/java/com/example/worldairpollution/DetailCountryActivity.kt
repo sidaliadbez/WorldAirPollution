@@ -14,6 +14,8 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import kotlinx.android.synthetic.main.activity_detail_country.*
+import kotlinx.android.synthetic.main.activity_detail_country.flag
+import kotlinx.android.synthetic.main.card_list_contry.*
 
 
 class DetailCountryActivity : AppCompatActivity() {
@@ -31,7 +33,9 @@ class DetailCountryActivity : AppCompatActivity() {
         GlideToVectorYou.justLoadImage(this, Uri.parse(blad?.api3?.get(0)?.flag), flag)
         Grandevaleur.setText(blad?.homeFeed2?.data?.aqi)
         Nompay.setText(blad?.country)
-
+valeurTemperature.text= blad?.homeFeed2?.data?.iaqi?.t?.v
+        valeurPressure.text= blad?.homeFeed2?.data?.iaqi?.p?.v
+        valeurLastUpdate.text= blad?.homeFeed2?.data?.time?.s
 
 
         if (blad?.homeFeed2?.data?.aqi=="-"){
@@ -85,7 +89,7 @@ class DetailCountryActivity : AppCompatActivity() {
         var coval = 0F
         if (blad?.homeFeed2?.data?.iaqi?.co==null){
             val text = textco.text.toString()
-            textco.text= text+ " :   /"
+            textco.text= text+ " :   -"
         }else{
             val text = textco.text.toString()
             textco.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.co!!.v
@@ -140,7 +144,7 @@ class DetailCountryActivity : AppCompatActivity() {
         var so2val = 0F
         if (blad?.homeFeed2?.data?.iaqi?.so2==null){
             val text = textso2.text.toString()
-            textso2.text= text+ " :   /"
+            textso2.text= text+ " :   -"
         }else{
             val text = textso2.text.toString()
             textso2.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.so2!!.v
@@ -182,7 +186,7 @@ class DetailCountryActivity : AppCompatActivity() {
         var no2val = 0F
         if (blad?.homeFeed2?.data?.iaqi?.no2==null){
             val text = textno2.text.toString()
-            textno2.text= text+ " :   /"
+            textno2.text= text+ " :   -"
         }else{
             val text = textno2.text.toString()
             textno2.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.no2!!.v
@@ -224,7 +228,7 @@ class DetailCountryActivity : AppCompatActivity() {
         var pm10val = 0F
         if (blad?.homeFeed2?.data?.iaqi?.pm10==null){
             val text = textpm10.text.toString()
-            textpm10.text= text+ " :   /"
+            textpm10.text= text+ " :   -"
         }else{
             val text = textpm10.text.toString()
             textpm10.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.pm10!!.v
@@ -268,7 +272,7 @@ class DetailCountryActivity : AppCompatActivity() {
         var pm25val = 0F
         if (blad?.homeFeed2?.data?.iaqi?.pm25==null){
             val text = textpm25.text.toString()
-            textpm25.text= text+ " :   /"
+            textpm25.text= text+ " :   -"
         }else{
             val text = textpm25.text.toString()
             textpm25.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.pm25!!.v
