@@ -14,10 +14,14 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.worldairpollution.R.layout.activity_generalinformation
+import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.ColorTemplate.*
 import com.google.gson.GsonBuilder
@@ -45,7 +49,7 @@ lateinit var option : Spinner
         var barChart :BarChart = findViewById(R.id.barchart)
         barchart.setDrawBarShadow(false)
         barChart.setDrawValueAboveBar(true)
-        barChart.setMaxVisibleValueCount(50)
+        barChart.setMaxVisibleValueCount(300)
         barChart.setPinchZoom(false)
         barChart.setDrawGridBackground(false)
         var barEntries = ArrayList<BarEntry>()
@@ -57,13 +61,27 @@ lateinit var option : Spinner
         barEntries.add(BarEntry(6f,44f))
         barEntries.add(BarEntry(7f,30f))
         barEntries.add(BarEntry(8f,36f))
+        barEntries.add(BarEntry(9f,30f))
+        barEntries.add(BarEntry(10f,47f))
 
+            val  leftAxis : YAxis= barChart.getAxisLeft();
+        leftAxis.textColor=Color.WHITE
+        leftAxis.axisLineColor=Color.WHITE
+
+      val rightAxis :YAxis = barChart.getAxisRight();
+    rightAxis.setEnabled(false);
+
+    val xAxis:XAxis = barChart.getXAxis();
+    xAxis.setEnabled(false);
         var barDataSet = BarDataSet(barEntries,"Data Set1")
 
         barDataSet.color=  Color.parseColor("#FFE434")
 
         var data = BarData(barDataSet)
-        data.barWidth=0.9f
+        data.barWidth=0.5f
+        data.setValueTextColor(Color.WHITE)
+        data.setValueTextSize(10f)
+        barChart.animateY(3000, Easing.EaseInOutBack)
         barchart.description.isEnabled = false
         barChart.legend.isEnabled= false
         barChart.data= data
@@ -191,7 +209,6 @@ lateinit var option : Spinner
 
 
 }
-
 
 class HomeFeed(val data : List<data>): Serializable
 class data (val country :String): Serializable
