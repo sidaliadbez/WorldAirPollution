@@ -1,6 +1,7 @@
 package com.example.worldairpollution
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.ContactsContract
@@ -13,6 +14,12 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import com.example.worldairpollution.R.layout.activity_generalinformation
+import com.github.mikephil.charting.charts.BarChart
+import com.github.mikephil.charting.data.BarData
+import com.github.mikephil.charting.data.BarDataSet
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.utils.ColorTemplate
+import com.github.mikephil.charting.utils.ColorTemplate.*
 import com.google.gson.GsonBuilder
 import com.r0adkll.slidr.Slidr
 import okhttp3.*
@@ -35,43 +42,31 @@ lateinit var option : Spinner
         }
 
         fetchJson()
-/*
-        option= findViewById(R.id.spinner) as Spinner
-        result =findViewById(R.id.choiceView) as TextView
-        val options = arrayOf("Value","Name")
-        option.adapter = ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,options)
-        /*
-        option.onItemSelectedListener= object  : AdapterView.OnItemSelectedListener{
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-               result.text="Please Select an Option"
-            }
+        var barChart :BarChart = findViewById(R.id.barchart)
+        barchart.setDrawBarShadow(false)
+        barChart.setDrawValueAboveBar(true)
+        barChart.setMaxVisibleValueCount(50)
+        barChart.setPinchZoom(false)
+        barChart.setDrawGridBackground(false)
+        var barEntries = ArrayList<BarEntry>()
+        barEntries.add(BarEntry(1f,40f))
+        barEntries.add(BarEntry(2f,44f))
+        barEntries.add(BarEntry(3f,30f))
+        barEntries.add(BarEntry(4f,36f))
+        barEntries.add(BarEntry(5f,40f))
+        barEntries.add(BarEntry(6f,44f))
+        barEntries.add(BarEntry(7f,30f))
+        barEntries.add(BarEntry(8f,36f))
 
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                result.text=options.get(position)
-            }
-        }*/
+        var barDataSet = BarDataSet(barEntries,"Data Set1")
 
+        barDataSet.color=  Color.parseColor("#FFE434")
 
-
-
-        var pay1 = country("Algerie",20,"Bonne","07/5/99")
-        var pay2= country("USA",20,"Bonne","07/5/99")
-        var countries = arrayListOf<country>()
-        countries.add(pay1)
-        countries.add(pay2)
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        recyclerView.layoutManager = layoutManager
-        val adapter = ListContriesAdapter(
-            this,
-            countries
-        )
-        recyclerView.adapter = adapter*/
+        var data = BarData(barDataSet)
+        data.barWidth=0.9f
+        barchart.description.isEnabled = false
+        barChart.legend.isEnabled= false
+        barChart.data= data
     }
 
 

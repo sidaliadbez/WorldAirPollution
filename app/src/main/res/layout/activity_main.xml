@@ -8,6 +8,7 @@
     android:background="@color/background_material_light">
 
 
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -21,6 +22,14 @@
             android:layout_height="222dp"
             android:background="#000000"
             android:orientation="vertical">
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/barchart"
+                android:layout_width="match_parent"
+                android:layout_height="161dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="6dp" />
 
             <ImageButton
                 android:layout_width="wrap_content"
