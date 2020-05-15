@@ -44,7 +44,7 @@ lateinit var option : Spinner
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
-val homeFeed = fetchJson1()
+/*val homeFeed = fetchJson1()
         print("hehe")
         var blads = arrayListOf<blad>()
         if ( homeFeed !=null){
@@ -64,7 +64,7 @@ val homeFeed = fetchJson1()
         }
         setupRecyclerView(blads)
         }
-        print(homeFeed!!.data[0].country)
+        print(homeFeed!!.data[0].country)*/
         var barChart :BarChart = findViewById(R.id.barchart)
         barchart.setDrawBarShadow(false)
         barChart.setDrawValueAboveBar(true)
