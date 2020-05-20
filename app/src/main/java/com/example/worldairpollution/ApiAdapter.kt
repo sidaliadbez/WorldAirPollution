@@ -19,6 +19,12 @@ import androidx.core.util.Pair
 class ApiAdapter(val context: Context, var blads: ArrayList<blad>): RecyclerView.Adapter<ApiAdapter.MyViewHolder>() {
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var dowla: blad? = null
+         var pay1 : String = "0"
+//        lateinit var pay2 : Float
+//        lateinit var pay3 : Float
+//        lateinit var pay4 : Float
+//        lateinit var pay5 : Float
+//        lateinit var pay6 : Float
 init {
 itemView.details.setOnClickListener {
     val intent = Intent(context, DetailCountryActivity::class.java)
@@ -31,6 +37,16 @@ itemView.details.setOnClickListener {
 }
 }
         fun setData(pay: blad, pos: Int) {
+            if (pay.homeFeed2.data.aqi != "-")
+            {if (pay.homeFeed2.data.aqi.toFloat() > pay1.toFloat()){
+                pay1=pay.homeFeed2.data.aqi
+                println("")
+            }}
+            if (pos == 7){
+                val intent1 = Intent(context, MainActivity::class.java)
+                intent1.putExtra("grandevaleur",pay1)
+                println("/////////////////////////////////////////////////////////////////////////////////////////fùk,z")
+            }
             dowla= pay
             itemView.nompay.text = pay.country
             itemView.date.text= pay.homeFeed2.data.iaqi.co?.v + " "+ pay.homeFeed2.data.iaqi.so2?.v + " " +pay.homeFeed2.data.iaqi.no2?.v +" " +pay.homeFeed2.data.iaqi.pm10?.v +" "+pay.homeFeed2.data.iaqi.pm25?.v

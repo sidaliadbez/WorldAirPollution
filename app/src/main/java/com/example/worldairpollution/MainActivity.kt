@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.provider.ContactsContract
 import android.widget.Spinner
 import android.widget.TextView
@@ -33,7 +34,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
-lateinit var option : Spinner
+    lateinit var option : Spinner
     lateinit var  result: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,27 +45,15 @@ lateinit var option : Spinner
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
-/*val homeFeed = fetchJson1()
-        print("hehe")
-        var blads = arrayListOf<blad>()
-        if ( homeFeed !=null){
+        fetchJson()
 
-        for ( i in 0 until homeFeed?.data?.size!!){
+        Handler().postDelayed({
+            //Do something after 100ms
 
-           val api2 =  fetchJson3(homeFeed.data[i].country)
-            val  api3= fetchJson4(api2,homeFeed.data[i].country)
-            if (api2 != null && api3 != null){
-                val blad = blad(homeFeed.data[i].country,api2,api3)
-                if (blad != null){
-                    blads.add(blad)
-                }
-
-            }
-
-        }
-        setupRecyclerView(blads)
-        }
-        print(homeFeed!!.data[0].country)*/
+        var blad: blad?=null
+        val bundel: Bundle?= intent.extras
+        val valeur  = bundel?.getString("grandevaleur")
+            print("jofez")
         var barChart :BarChart = findViewById(R.id.barchart)
         barchart.setDrawBarShadow(false)
         barChart.setDrawValueAboveBar(true)
@@ -72,7 +61,9 @@ lateinit var option : Spinner
         barChart.setPinchZoom(false)
         barChart.setDrawGridBackground(false)
         var barEntries = ArrayList<BarEntry>()
-        barEntries.add(BarEntry(1f,40f))
+            if (valeur != null) {
+                barEntries.add(BarEntry(1f,valeur.toFloat()))
+            }
         barEntries.add(BarEntry(2f,44f))
         barEntries.add(BarEntry(3f,30f))
         barEntries.add(BarEntry(4f,36f))
@@ -83,20 +74,20 @@ lateinit var option : Spinner
         barEntries.add(BarEntry(9f,30f))
         barEntries.add(BarEntry(10f,200f))
 
-            val  leftAxis : YAxis= barChart.getAxisLeft();
+        val  leftAxis : YAxis= barChart.getAxisLeft();
         leftAxis.textColor=Color.WHITE
         leftAxis.axisLineColor=Color.WHITE
-      val rightAxis :YAxis = barChart.getAxisRight();
-    rightAxis.setEnabled(false);
-var contry = ArrayList<String>()
+        val rightAxis :YAxis = barChart.getAxisRight();
+        rightAxis.setEnabled(false);
+        var contry = ArrayList<String>()
         contry.add("algeria")
         contry.add("algeria")
         contry.add("algeria")
         contry.add("algeria")
         contry.add("algeria")
-    val xAxis:XAxis = barChart.getXAxis();
+        val xAxis:XAxis = barChart.getXAxis();
 
-    xAxis.setEnabled(false);
+        xAxis.setEnabled(false);
         var barDataSet = BarDataSet(barEntries,"Data Set1")
 
         barDataSet.color=  Color.parseColor("#FFE434")
@@ -109,12 +100,13 @@ var contry = ArrayList<String>()
         barchart.description.isEnabled = false
         barChart.legend.isEnabled= false
         barChart.data= data
+        }, 15000)
     }
 
 
 
 
-/*
+
     fun fetchJson()  {
         val client = OkHttpClient()
         val request = Request.Builder()
@@ -132,7 +124,7 @@ var contry = ArrayList<String>()
                 print(cool )
                 val gson = GsonBuilder().create()
                 val homeFeed= gson.fromJson(cool,HomeFeed::class.java)
-                    fetchJson2(homeFeed)
+                fetchJson2(homeFeed)
             }
 
         })
@@ -145,33 +137,33 @@ var contry = ArrayList<String>()
         var status1 :Status?= null
         for (i in 0..homeFeed.data.size - 1){
 
-        val client = OkHttpClient()
-        val request = Request.Builder()
+            val client = OkHttpClient()
+            val request = Request.Builder()
 
-            .url("https://api.waqi.info/feed/"+homeFeed.data[i].country+"/?token=43e2d6a3b897ab60ac376128719ee9cce0f790bb")
-            .build()
+                .url("https://api.waqi.info/feed/"+homeFeed.data[i].country+"/?token=43e2d6a3b897ab60ac376128719ee9cce0f790bb")
+                .build()
 
 
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                print("sooooooooooooooooorry")
-            }
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    print("sooooooooooooooooorry")
+                }
 
-            override fun onResponse(call: Call, response: Response) {
+                override fun onResponse(call: Call, response: Response) {
                     if (response.isSuccessful){
 
                         var body = response.body()?.string()
                         val gson = GsonBuilder().create()
                         status1 =    gson.fromJson(body, Status::class.java)
                         if (status1?.status.equals("ok")){
-                             api2 =    gson.fromJson(body, Api2::class.java)
+                            api2 =    gson.fromJson(body, Api2::class.java)
                             println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+homeFeed.data[i].country + api2?.data?.aqi + api2?.data?.time?.s)
                         }
 
-}
-            }
+                    }
+                }
 
-        })
+            })
 
 
 
@@ -218,18 +210,15 @@ var contry = ArrayList<String>()
 
 
 
-    }
+        }
         runOnUiThread {
             println("taille:  "+blads.size)
-            for (blad in blads){
-                println("Le pay: "+blad.country )
-            }
-            blads.sortedBy { it.country }
+           // blads.sortedBy { it.homeFeed2.data.aqi }
             setupRecyclerView(blads)
         }
 
     }
-*/
+
     private fun setupRecyclerView(blads: ArrayList<blad>) {
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
@@ -262,9 +251,9 @@ fun fetchJson1()  : HomeFeed? {
             var cool = response.body()?.string()
             print(cool )
             val gson = GsonBuilder().create()
-             val homefeed= gson.fromJson(cool,HomeFeed::class.java)
-         //   homeFeed!!.data?= homefeed!!.data?
-                println("hehe")
+            val homefeed= gson.fromJson(cool,HomeFeed::class.java)
+            //   homeFeed!!.data?= homefeed!!.data?
+            println("hehe")
 
         }
 
@@ -277,34 +266,34 @@ fun fetchJson3(name:String): Api2?{
     var blads = arrayListOf<blad>()
     var api2: Api2? = null
     var status1 :Status?= null
-        val client = OkHttpClient()
-        val request = Request.Builder()
+    val client = OkHttpClient()
+    val request = Request.Builder()
 
-            .url("https://api.waqi.info/feed/"+name+"/?token=43e2d6a3b897ab60ac376128719ee9cce0f790bb")
-            .build()
+        .url("https://api.waqi.info/feed/"+name+"/?token=43e2d6a3b897ab60ac376128719ee9cce0f790bb")
+        .build()
 
-        client.newCall(request).enqueue(object : Callback {
-            override fun onFailure(call: Call, e: IOException) {
-                print("sooooooooooooooooorry")
-            }
+    client.newCall(request).enqueue(object : Callback {
+        override fun onFailure(call: Call, e: IOException) {
+            print("sooooooooooooooooorry")
+        }
 
-            override fun onResponse(call: Call, response: Response) {
-                if (response.isSuccessful){
+        override fun onResponse(call: Call, response: Response) {
+            if (response.isSuccessful){
 
-                    var body = response.body()?.string()
-                    val gson = GsonBuilder().create()
-                    status1 =    gson.fromJson(body, Status::class.java)
-                    if (status1?.status.equals("ok")){
-                        api2 =    gson.fromJson(body, Api2::class.java)
-                        println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+name + api2?.data?.aqi + api2?.data?.time?.s)
-                    }
-
+                var body = response.body()?.string()
+                val gson = GsonBuilder().create()
+                status1 =    gson.fromJson(body, Status::class.java)
+                if (status1?.status.equals("ok")){
+                    api2 =    gson.fromJson(body, Api2::class.java)
+                    println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+name + api2?.data?.aqi + api2?.data?.time?.s)
                 }
+
             }
+        }
 
-        })
+    })
 
-return api2
+    return api2
 }
 
 
@@ -330,8 +319,8 @@ fun fetchJson4(api2: Api2?, name :String) : Array<Api3>? {
 
 
 
-                var body = response.body()?.string()
-                val gson = GsonBuilder().create()
+                    var body = response.body()?.string()
+                    val gson = GsonBuilder().create()
                     api3 =    gson.fromJson(body, Array<Api3>::class.java)
                 }
             }
@@ -339,7 +328,7 @@ fun fetchJson4(api2: Api2?, name :String) : Array<Api3>? {
         }
 
     })
-return  api3
+    return  api3
 }
 class HomeFeed(val data : List<data>): Serializable
 class data (val country :String): Serializable
@@ -357,3 +346,111 @@ class no2(var v: String ="-" ): Serializable
 class pm25(var v: String ="-" ): Serializable
 class pm10(var v: String ="-" ): Serializable
 class blad(var country: String, var homeFeed2: Api2,var api3: Array<Api3>) : Serializable
+
+//    fun fetchJson1() {
+//        var client = OkHttpClient()
+//        var data = ArrayList<data>()
+//        var  names = ArrayList<String>()
+//        var homefeed: HomeFeed= HomeFeed(data)
+//        val request = Request.Builder()
+//            .url("https://api.airvisual.com/v2/countries?key=7be3b8fb-772d-4a92-ab9b-01690c31aff6")
+//            .build()
+//
+//
+//
+//        client.newCall(request).enqueue(object : Callback {
+//            override fun onFailure(call: Call, e: IOException) {
+//                print("sooooooooooooooooorry")
+//            }
+//
+//            override fun onResponse(call: Call, response: Response){
+//                var body = response.body()?.string()
+//                print(body )
+//                val gson = GsonBuilder().create()
+//                homefeed= gson.fromJson(body,HomeFeed::class.java)
+//                for (i in homefeed.data.indices){
+//                    fetchJson3(homefeed.data[i].country)
+//
+//                }
+//            }
+//
+//        })
+//
+//    }
+//
+//
+//}
+//
+//
+//
+//
+//fun fetchJson3(name:String){
+//    var blads = arrayListOf<blad>()
+//    var api2: Api2? = null
+//    var status1 :Status?= null
+//    val client = OkHttpClient()
+//    val request = Request.Builder()
+//
+//        .url("https://api.waqi.info/feed/"+name+"/?token=43e2d6a3b897ab60ac376128719ee9cce0f790bb")
+//        .build()
+//
+//    client.newCall(request).enqueue(object : Callback {
+//        override fun onFailure(call: Call, e: IOException) {
+//            print("sooooooooooooooooorry")
+//        }
+//
+//        override fun onResponse(call: Call, response: Response) {
+//            if (response.isSuccessful){
+//
+//                var body = response.body()?.string()
+//                val gson = GsonBuilder().create()
+//                status1 =    gson.fromJson(body, Status::class.java)
+//                if (status1?.status.equals("ok")){
+//                    api2 =    gson.fromJson(body, Api2::class.java)
+//                    println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+name + api2?.data?.aqi + api2?.data?.time?.s)
+//                    fetchJson4(api2,name)
+//
+//                }
+//            }
+//
+//        }
+//
+//    })
+//
+//}
+//
+//
+//
+//
+//fun fetchJson4(api2: Api2?, name :String) {
+//    var api3 : Array<Api3>? =null
+//    val client2 = OkHttpClient()
+//    val request2 = Request.Builder()
+//
+//        .url("https://restcountries.eu/rest/v2/name/"+name)
+//        .build()
+//
+//
+//    client2.newCall(request2).enqueue(object : Callback {
+//        override fun onFailure(call: Call, e: IOException) {
+//            print("sooooooooooooooooorry")
+//        }
+//
+//        override fun onResponse(call: Call, response: Response) {
+//            if (response.isSuccessful){
+//                if (api2 != null){
+//
+//
+//
+//                    var body = response.body()?.string()
+//                    val gson = GsonBuilder().create()
+//                    api3 =    gson.fromJson(body, Array<Api3>::class.java)
+//                }
+//            }
+//
+//        }
+//
+//    })
+//
+//}
+//
