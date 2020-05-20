@@ -1,9 +1,12 @@
 package com.example.worldairpollution
 
 
+import android.app.Activity
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.transition.Fade
+import android.transition.Slide
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -16,19 +19,25 @@ import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import kotlinx.android.synthetic.main.activity_detail_country.*
 import kotlinx.android.synthetic.main.activity_detail_country.flag
 import kotlinx.android.synthetic.main.card_list_contry.*
+import kotlinx.android.synthetic.main.toolbaredetail.*
 
 
 class DetailCountryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_country)
-      var  toolbar: Toolbar = findViewById(R.id.toolbar)
+
+      var  toolbar: Toolbar = findViewById(R.id.toolbardetail)
         setSupportActionBar(toolbar)
 
         var blad: blad?=null
         val bundel: Bundle?= intent.extras
         blad= bundel?.getSerializable("blad") as? blad
+        back.setOnClickListener {
+            finish()
+            overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
 
+        }
 
         GlideToVectorYou.justLoadImage(this, Uri.parse(blad?.api3?.get(0)?.flag), flag)
         Grandevaleur.setText(blad?.homeFeed2?.data?.aqi)
@@ -462,6 +471,10 @@ valeurTemperature.text= blad?.homeFeed2?.data?.iaqi?.t?.v
         pieChart.animateY(2000, Easing.EaseInOutBack)
 
 }
+    override fun finish() {
+        super.finish()
+        overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
+    }
 
     override fun onBackPressed() {
         piechartco.postDelayed(Runnable { piechartco.setVisibility(View.GONE) }, 200)

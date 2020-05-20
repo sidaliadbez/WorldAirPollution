@@ -5,8 +5,8 @@
     android:orientation="vertical"
     android:id="@+id/grand">
     <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"/>
+        android:id="@+id/toolbardetail"
+        layout="@layout/toolbaredetail"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,9 +15,9 @@
 
         <ImageView
             android:id="@+id/flag"
-            android:layout_width="75dp"
+            android:layout_width="match_parent"
             android:layout_height="65dp"
-            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
             android:transitionName="drapeau" />
 
         <TextView

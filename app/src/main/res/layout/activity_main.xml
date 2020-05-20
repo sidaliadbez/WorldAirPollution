@@ -138,7 +138,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="Rent"
+                        android:text="Name"
                             android:drawableRight="@drawable/ic_down"
                             android:layout_marginRight="10dp"
                             android:layout_marginVertical="10dp"

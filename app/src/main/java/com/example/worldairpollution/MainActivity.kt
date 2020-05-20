@@ -2,19 +2,14 @@ package com.example.worldairpollution
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.provider.ContactsContract
+import android.transition.Fade
+import android.transition.Slide
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.android.synthetic.main.activity_main.*
-import android.view.View
-import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import com.example.worldairpollution.R.layout.activity_generalinformation
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
@@ -22,16 +17,12 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.formatter.IAxisValueFormatter
-import com.github.mikephil.charting.utils.ColorTemplate
-import com.github.mikephil.charting.utils.ColorTemplate.*
 import com.google.gson.GsonBuilder
-import com.r0adkll.slidr.Slidr
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.card_list_contry.*
 import okhttp3.*
 import java.io.IOException
 import java.io.Serializable
-import java.util.*
-import kotlin.collections.ArrayList
 
 class MainActivity : AppCompatActivity() {
     lateinit var option : Spinner
@@ -39,12 +30,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         imageButton.setOnClickListener {
             val intent= Intent(this,
                 GeneralInfoActivity::class.java)
             startActivity(intent)
             overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
         }
+
         fetchJson()
 
         Handler().postDelayed({
@@ -190,7 +183,7 @@ class MainActivity : AppCompatActivity() {
                         if (status1?.status.equals("ok")){
 
                             val api3 =    gson.fromJson(body, Array<Api3>::class.java)
-                            val blad = blad(homeFeed.data[i].country,api2!!,api3)
+                            val blad = api2?.let { blad(homeFeed.data[i].country, it,api3) }
                             if (homeFeed.data[i].country=="Algeria"){
                                 print("hello")
                             }

@@ -3,6 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/colorPrimaryDark"
-    android:elevation="4dp">
-
+    android:elevation="4dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+    <TextView
+        style="@style/TextAppearance.Widget.AppCompat.Toolbar.Title"
+        android:text="FAQ"
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"/>
+    <ImageView
+        android:id="@+id/retour"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="left"
+        android:src="@drawable/ic_back_icon" />
+</LinearLayout>
 </androidx.appcompat.widget.Toolbar>

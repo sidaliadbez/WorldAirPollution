@@ -5,6 +5,8 @@ import android.app.ActivityOptions
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.transition.Fade
+import android.transition.Slide
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,10 +31,11 @@ init {
 itemView.details.setOnClickListener {
     val intent = Intent(context, DetailCountryActivity::class.java)
     intent.putExtra("blad",dowla!!)
-    val p1 :Pair<View,String> = Pair(itemView.flag,"drapeau")
+   // val p1 :Pair<View,String> = Pair(itemView.flag,"drapeau")
 
-   val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity,p1)
-    context.startActivity(intent, options.toBundle())
+   //val options = ActivityOptionsCompat.makeSceneTransitionAnimation(context as Activity)
+    context.startActivity(intent)
+ (context as Activity).overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
 
 }
 }
