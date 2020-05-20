@@ -37,7 +37,7 @@
                 android:layout_marginStart="332dp"
                 android:layout_marginTop="16dp"
                 android:background="@null"
-                android:src="@drawable/ic_surface136652"
+                android:src="@drawable/ic_search"
                 android:layout_marginRight="15dp"
                 app:layout_goneMarginTop="15dp"
                 app:layout_constraintStart_toEndOf="@+id/imageButton"

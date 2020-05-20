@@ -5,6 +5,8 @@ import android.app.Activity
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.text.Html
+import android.text.SpannableString
 import android.transition.Fade
 import android.transition.Slide
 import android.view.View
@@ -29,7 +31,7 @@ class DetailCountryActivity : AppCompatActivity() {
 
       var  toolbar: Toolbar = findViewById(R.id.toolbardetail)
         setSupportActionBar(toolbar)
-
+qualite
         var blad: blad?=null
         val bundel: Bundle?= intent.extras
         blad= bundel?.getSerializable("blad") as? blad
@@ -42,8 +44,9 @@ class DetailCountryActivity : AppCompatActivity() {
         GlideToVectorYou.justLoadImage(this, Uri.parse(blad?.api3?.get(0)?.flag), flag)
         Grandevaleur.setText(blad?.homeFeed2?.data?.aqi)
         Nompay.setText(blad?.country)
-valeurTemperature.text= blad?.homeFeed2?.data?.iaqi?.t?.v
-        valeurPressure.text= blad?.homeFeed2?.data?.iaqi?.p?.v
+
+valeurTemperature.text= blad?.homeFeed2?.data?.iaqi?.t?.v+" °C"
+        valeurPressure.text= blad?.homeFeed2?.data?.iaqi?.p?.v+" Pa"
         valeurLastUpdate.text= blad?.homeFeed2?.data?.time?.s
 
 
@@ -53,12 +56,12 @@ valeurTemperature.text= blad?.homeFeed2?.data?.iaqi?.t?.v
             Grandevaleur.text="NO Data Available :("
         }else{
 
-                textquality.text="Quality of the air : "
+                //textquality.text="Quality of the air : "
             when(blad?.homeFeed2?.data?.aqi?.toInt()){
                 in 0..50 ->{
                     Grandevaleur.setTextColor(Color.parseColor("#FF3F8F42"))
-                    qualite.text="Excellent"
-                    qualite.setTextColor(Color.parseColor("#FF3F8F42"))
+                   qualite.text=Html.fromHtml("Quality of the air: <font color=#ff3f8f42>Excellent</font>")
+                   // qualite.setTextColor(Color.parseColor("#FF3F8F42"))
                 }
                 in  51..100-> {
                     Grandevaleur.setTextColor(Color.parseColor("#FFFFC125"))
