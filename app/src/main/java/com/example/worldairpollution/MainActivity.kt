@@ -54,18 +54,16 @@ class MainActivity : AppCompatActivity() {
         barChart.setPinchZoom(false)
         barChart.setDrawGridBackground(false)
         var barEntries = ArrayList<BarEntry>()
-            if (valeur != null) {
-                barEntries.add(BarEntry(1f,valeur.toFloat()))
-            }
-        barEntries.add(BarEntry(2f,44f))
-        barEntries.add(BarEntry(3f,30f))
-        barEntries.add(BarEntry(4f,36f))
-        barEntries.add(BarEntry(5f,40f))
-        barEntries.add(BarEntry(6f,44f))
-        barEntries.add(BarEntry(7f,30f))
-        barEntries.add(BarEntry(8f,36f))
-        barEntries.add(BarEntry(9f,30f))
-        barEntries.add(BarEntry(10f,200f))
+            barEntries.add(BarEntry(1f,130f))
+        barEntries.add(BarEntry(2f,120f))
+        barEntries.add(BarEntry(3f,100f))
+        barEntries.add(BarEntry(4f,95f))
+        barEntries.add(BarEntry(5f,92f))
+        barEntries.add(BarEntry(6f,80f))
+        barEntries.add(BarEntry(7f,80f))
+        barEntries.add(BarEntry(8f,77f))
+        barEntries.add(BarEntry(9f,74f))
+        barEntries.add(BarEntry(10f,70f))
 
         val  leftAxis : YAxis= barChart.getAxisLeft();
         leftAxis.textColor=Color.WHITE
@@ -93,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         barchart.description.isEnabled = false
         barChart.legend.isEnabled= false
         barChart.data= data
-        }, 15000)
+        }, 1500)
     }
 
 

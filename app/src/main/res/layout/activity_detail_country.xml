@@ -42,7 +42,7 @@
                 android:id="@+id/qualite"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:textAlignment="viewStart" />
+                android:textAlignment="center" />
         </LinearLayout>
     </LinearLayout>
 <LinearLayout
@@ -166,6 +166,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center" />
+
                 <TextView
                     android:id="@+id/textno2"
                     android:layout_width="match_parent"
@@ -386,11 +387,11 @@
                        android:layout_width="0dp"
                        android:layout_rowWeight="1"
                        android:layout_columnWeight="2"
-                       android:text="07-07-07-1999"
+                       android:text="-"
                        android:paddingRight="30dp"
                        android:textColor="#000000"
                        android:gravity="right|center_vertical"
-                       android:maxLength="16"
+                       android:maxLength="19"
                        />
                </GridLayout>
 

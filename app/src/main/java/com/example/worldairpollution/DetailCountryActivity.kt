@@ -31,7 +31,6 @@ class DetailCountryActivity : AppCompatActivity() {
 
       var  toolbar: Toolbar = findViewById(R.id.toolbardetail)
         setSupportActionBar(toolbar)
-qualite
         var blad: blad?=null
         val bundel: Bundle?= intent.extras
         blad= bundel?.getSerializable("blad") as? blad
@@ -47,7 +46,7 @@ qualite
 
 valeurTemperature.text= blad?.homeFeed2?.data?.iaqi?.t?.v+" °C"
         valeurPressure.text= blad?.homeFeed2?.data?.iaqi?.p?.v+" Pa"
-        valeurLastUpdate.text= blad?.homeFeed2?.data?.time?.s
+        valeurLastUpdate.text= blad?.homeFeed2?.data?.time?.s?.substringBefore(" ")+" at "+blad?.homeFeed2?.data?.time?.s?.substringAfter(" ")
 
 
         if (blad?.homeFeed2?.data?.aqi=="-"){
@@ -60,33 +59,41 @@ valeurTemperature.text= blad?.homeFeed2?.data?.iaqi?.t?.v+" °C"
             when(blad?.homeFeed2?.data?.aqi?.toInt()){
                 in 0..50 ->{
                     Grandevaleur.setTextColor(Color.parseColor("#FF3F8F42"))
-                   qualite.text=Html.fromHtml("Quality of the air: <font color=#ff3f8f42>Excellent</font>")
+
+                   qualite.text=Html.fromHtml("Quality of the air: <font color=#3f8f42>Excellent</font>")
                    // qualite.setTextColor(Color.parseColor("#FF3F8F42"))
                 }
                 in  51..100-> {
                     Grandevaleur.setTextColor(Color.parseColor("#FFFFC125"))
-                    qualite.text="Good"
-                    qualite.setTextColor(Color.parseColor("#FFFFC125"))
+                    qualite.text=Html.fromHtml("Quality of the air: <font color=#FFC125>Good</font>")
+//                    qualite.text="Good"
+//                    qualite.setTextColor(Color.parseColor("#FFFFC125"))
                 }
                 in  101..150-> {
                     Grandevaleur.setTextColor(Color.parseColor("#FFF88510"))
-                    qualite.text="Lightly Polluted"
-                    qualite.setTextColor(Color.parseColor("#FFF88510"))
+                    qualite.text=Html.fromHtml("Quality of the air: <font color=#F88510>Lightly Polluted</font>")
+
+//                    qualite.text="Lightly Polluted"
+//                    qualite.setTextColor(Color.parseColor("#FFF88510"))
                 }
                 in  151..200-> {
                     Grandevaleur.setTextColor(Color.parseColor("#FFE86262"))
-                    qualite.text="Moderately Polluted"
-                    qualite.setTextColor(Color.parseColor("#FFE86262"))
+                    qualite.text=Html.fromHtml("Quality of the air: <font color=#c81e1e>Moderately Polluted</font>")
+
+//                    qualite.text="Moderately Polluted"
+//                    qualite.setTextColor(Color.parseColor("#FFE86262"))
                 }
                 in  201..300-> {
+                    qualite.text=Html.fromHtml("Quality of the air: <font color=#9A00DC>Moderately Polluted</font>")
                     Grandevaleur.setTextColor(Color.parseColor("#FF9A00DC"))
-                    qualite.text="Heavily Polluted"
-                    qualite.setTextColor(Color.parseColor("#FF9A00DC"))
+//                    qualite.text="Heavily Polluted"
+//                    qualite.setTextColor(Color.parseColor("#FF9A00DC"))
                 }
                 else -> {
+                    qualite.text=Html.fromHtml("Quality of the air: <font color=#681616>Moderately Polluted</font>")
                     Grandevaleur.setTextColor(Color.parseColor("#FF681616"))
-                    qualite.text="Severely Polluted"
-                    qualite.setTextColor(Color.parseColor("#FF681616"))
+//                    qualite.text="Severely Polluted"
+//                    qualite.setTextColor(Color.parseColor("#FF681616"))
                 }
             }
         }
@@ -104,7 +111,9 @@ valeurTemperature.text= blad?.homeFeed2?.data?.iaqi?.t?.v+" °C"
             textco.text= text+ " :   -"
         }else{
             val text = textco.text.toString()
-            textco.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.co!!.v
+            textco.text=Html.fromHtml(text+":   <font color=#000000>"+ blad?.homeFeed2?.data?.iaqi?.co!!.v+"</font>")
+
+            //textco.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.co!!.v
             when(blad?.homeFeed2?.data?.iaqi?.co!!.v.toFloat()){
                 in 0F .. 1.0F-> {
                     couleurco = Color.parseColor("#ff3f8f42")
@@ -159,7 +168,8 @@ valeurTemperature.text= blad?.homeFeed2?.data?.iaqi?.t?.v+" °C"
             textso2.text= text+ " :   -"
         }else{
             val text = textso2.text.toString()
-            textso2.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.so2!!.v
+            textso2.text=Html.fromHtml(text+":   <font color=#000000>"+ blad?.homeFeed2?.data?.iaqi?.so2!!.v+"</font>")
+          //  textso2.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.so2!!.v
             when(blad?.homeFeed2?.data?.iaqi?.so2!!.v.toFloat()){
                 in 0F .. 40F-> {
                     couleurso2 = Color.parseColor("#ff3f8f42")
@@ -201,7 +211,9 @@ valeurTemperature.text= blad?.homeFeed2?.data?.iaqi?.t?.v+" °C"
             textno2.text= text+ " :   -"
         }else{
             val text = textno2.text.toString()
-            textno2.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.no2!!.v
+            textno2.text=Html.fromHtml(text+":   <font color=#000000>"+ blad?.homeFeed2?.data?.iaqi?.no2!!.v+"</font>")
+
+         //q   textno2.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.no2!!.v
             when(blad?.homeFeed2?.data?.iaqi?.no2!!.v.toFloat()){
                 in 0F .. 40F-> {
                     couleurno2 = Color.parseColor("#ff3f8f42")
@@ -243,7 +255,9 @@ valeurTemperature.text= blad?.homeFeed2?.data?.iaqi?.t?.v+" °C"
             textpm10.text= text+ " :   -"
         }else{
             val text = textpm10.text.toString()
-            textpm10.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.pm10!!.v
+            textpm10.text=Html.fromHtml(text+":   <font color=#000000>"+ blad?.homeFeed2?.data?.iaqi?.pm10!!.v+"</font>")
+
+            //textpm10.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.pm10!!.v
             when(blad?.homeFeed2?.data?.iaqi?.pm10!!.v.toFloat()){
                 in 0F .. 50F-> {
                     couleurpm10 = Color.parseColor("#ff3f8f42")
@@ -287,7 +301,8 @@ valeurTemperature.text= blad?.homeFeed2?.data?.iaqi?.t?.v+" °C"
             textpm25.text= text+ " :   -"
         }else{
             val text = textpm25.text.toString()
-            textpm25.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.pm25!!.v
+            textpm25.text=Html.fromHtml(text+":   <font color=#000000>"+ blad?.homeFeed2?.data?.iaqi?.pm25!!.v+"</font>")
+            //textpm25.text= text+ " :   "+ blad?.homeFeed2?.data?.iaqi?.pm25!!.v
             when(blad?.homeFeed2?.data?.iaqi?.pm25!!.v.toFloat()){
                 in 0F .. 30F-> {
                     couleurpm25 = Color.parseColor("#ff3f8f42")
