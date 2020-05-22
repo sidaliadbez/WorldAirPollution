@@ -30,14 +30,13 @@ class ExpandableListAdapter(var context: Context, var expandableListView : Expan
             convertView = inflater.inflate(R.layout.layout_group,null)
         }
      
-        val title = convertView?.findViewById<TextView>(R.id.tv_title)
+        val title = convertView?.findViewById<TextView>(R.id.groupe)
         title?.text = getGroup(groupPosition)
         title?.setOnClickListener {
             if(expandableListView.isGroupExpanded(groupPosition))
                 expandableListView.collapseGroup(groupPosition)
             else
                 expandableListView.expandGroup(groupPosition)
-            Toast.makeText(context, getGroup(groupPosition), Toast.LENGTH_SHORT).show()
         }
         return convertView
     }
