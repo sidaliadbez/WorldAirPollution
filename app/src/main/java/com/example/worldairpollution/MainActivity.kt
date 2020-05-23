@@ -17,6 +17,7 @@ import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.card_list_contry.*
@@ -60,10 +61,7 @@ class MainActivity : AppCompatActivity() {
         barEntries.add(BarEntry(4f,95f))
         barEntries.add(BarEntry(5f,92f))
         barEntries.add(BarEntry(6f,80f))
-        barEntries.add(BarEntry(7f,80f))
-        barEntries.add(BarEntry(8f,77f))
-        barEntries.add(BarEntry(9f,74f))
-        barEntries.add(BarEntry(10f,70f))
+        barEntries.add(BarEntry(7f,77f))
 
         val  leftAxis : YAxis= barChart.getAxisLeft();
         leftAxis.textColor=Color.WHITE
@@ -72,13 +70,22 @@ class MainActivity : AppCompatActivity() {
         rightAxis.setEnabled(false);
         var contry = ArrayList<String>()
         contry.add("algeria")
-        contry.add("algeria")
-        contry.add("algeria")
-        contry.add("algeria")
-        contry.add("algeria")
-        val xAxis:XAxis = barChart.getXAxis();
+        contry.add("China")
+        contry.add("India")
+        contry.add("Belgium")
+        contry.add("Croatia")
+            contry.add("Vietnam")
+            contry.add("Uganda")
+            contry.add("Ukraine")
 
-        xAxis.setEnabled(false);
+        val xAxis:XAxis = barChart.getXAxis();
+            xAxis.setDrawAxisLine(false)
+            xAxis.setDrawGridLines(false)
+            xAxis.labelCount=6
+            xAxis.textSize=10f
+            xAxis.textColor=Color.WHITE
+            barChart.xAxis.valueFormatter=IndexAxisValueFormatter(contry)
+        xAxis.setEnabled(true);
         var barDataSet = BarDataSet(barEntries,"Data Set1")
 
         barDataSet.color=  Color.parseColor("#FFE434")
