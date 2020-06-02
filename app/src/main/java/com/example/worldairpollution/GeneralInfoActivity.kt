@@ -41,7 +41,7 @@ preventPollution.add("-Reduce the number of trips you take in your car.\n" +"\n"
         val pollutants: MutableList<String> = ArrayList()
         pollutants.add("The proposed AQI will consider five pollutants (PM10, PM2.5, NO2, SO2, CO) for which short-term (up to 24-hourly averaging period) National Ambient Air Quality Standards are prescribed. Based on the measured ambient concentrations, corresponding standards and likely health impact, a sub-index is calculated for each of these pollutants. ")
         val aqi: MutableList<String> = ArrayList()
-        aqi.add("The numbers are the Air Quality Indexes, which is based on a scale from 0 (good) to 500 (bad).The colors correspond to the different health impact categories (Excellent, Good, Lightly Polluted,Moderately Polluted,Heavily Polluted,Severely Polluted)")
+        aqi.add("The numbers are the Air Quality Indexes, which is based on a scale from 0 (Excellent) to 500 (Severely Polluted).The colors correspond to the different health impact categories (Excellent, Good, Lightly Polluted,Moderately Polluted,Heavily Polluted,Severely Polluted)")
         val corona : MutableList<String> = ArrayList()
         corona.add("The coronavirus pandemic has lead to an increase in air quality all around the world. Lockdowns have resulted in factories and roads shutting, thus reducing emissions.\n\nReuters visualisations, based on data from NASA’s Global Modeling and Data Assimilation team, show how concentrations of some pollutants fell drastically after the lockdowns started.\n" +
                 "\n" +

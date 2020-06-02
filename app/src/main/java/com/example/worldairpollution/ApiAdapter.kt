@@ -52,7 +52,8 @@ itemView.details.setOnClickListener {
             }
             dowla= pay
             itemView.nompay.text = pay.country
-            itemView.date.text= pay.homeFeed2.data.iaqi.co?.v + " "+ pay.homeFeed2.data.iaqi.so2?.v + " " +pay.homeFeed2.data.iaqi.no2?.v +" " +pay.homeFeed2.data.iaqi.pm10?.v +" "+pay.homeFeed2.data.iaqi.pm25?.v
+            itemView.date.text = "Last Update: " +pay.homeFeed2.data.time.s.substringBefore(" ")
+            //itemView.date.text= pay.homeFeed2.data.iaqi.co?.v + " "+ pay.homeFeed2.data.iaqi.so2?.v + " " +pay.homeFeed2.data.iaqi.no2?.v +" " +pay.homeFeed2.data.iaqi.pm10?.v +" "+pay.homeFeed2.data.iaqi.pm25?.v
             itemView.valeur.text="Value: "+pay.homeFeed2.data.aqi
             if (pay.homeFeed2.data.aqi=="-"){
                 itemView.etat.text="Stat: -"

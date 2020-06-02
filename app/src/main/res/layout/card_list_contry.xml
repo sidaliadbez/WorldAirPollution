@@ -63,7 +63,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Date : 07/07/1999 "
+                        android:text="Last Update : 07/07/1999 "
 />
 
                 </LinearLayout>
